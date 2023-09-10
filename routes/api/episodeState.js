@@ -5,6 +5,9 @@ const {
     handleEpisodeState,
 } = require("../../controllers/episodesStateController");
 
+const verifyJWT = require("../../middleware/verifyJWT");
+
+router.use(verifyJWT);
 router.put("/", handleEpisodeState);
 
 module.exports = router;

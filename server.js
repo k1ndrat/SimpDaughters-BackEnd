@@ -10,8 +10,6 @@ const cors = require("cors");
 
 const PORT = process.env.PORT || 3500;
 
-const verifyJWT = require("./middleware/verifyJWT");
-
 connectDB();
 
 // Cross Origin Resource Sharing
@@ -44,9 +42,6 @@ app.use(cookieParser());
 
 app.use("/register", require("./routes/register"));
 app.use("/auth", require("./routes/auth"));
-// app.use("/refresh", require("./routes/refresh"));
-
-app.use(verifyJWT);
 
 app.use("/api/episodes", require("./routes/api/episodes"));
 app.use("/api/episodestate", require("./routes/api/episodeState"));
