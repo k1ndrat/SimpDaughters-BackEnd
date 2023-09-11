@@ -1,15 +1,15 @@
 const EpisodeState = require("../model/EpisodeState");
 
 const handleEpisodeState = async (req, res) => {
-    const { episode, season, userId, state } = req.body;
+    const { episode, season, user, state } = req.body;
 
-    if (!episode || !season || !userId)
+    if (!episode || !season || !user)
         return res
             .status(400)
-            .json({ message: "episode, season, userId are required" });
+            .json({ message: "episode, season, user are required" });
 
     try {
-        const filter = { episode, season, userId };
+        const filter = { episode, season, user };
         const updatedEpisodeState = await EpisodeState.findOneAndUpdate(
             filter,
             {
@@ -26,7 +26,7 @@ const handleEpisodeState = async (req, res) => {
             const result = await EpisodeState.create({
                 episode,
                 season,
-                userId,
+                user,
                 state,
             });
 
@@ -41,6 +41,13 @@ const handleEpisodeState = async (req, res) => {
     }
 };
 
+const getAllEpisodeStates = async (req, res) => {
+    const result = await EpisodeState.find();
+
+    res.status(200).json(result);
+};
+
 module.exports = {
     handleEpisodeState,
+    getAllEpisodeStates,
 };

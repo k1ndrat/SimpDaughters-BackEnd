@@ -10,7 +10,7 @@ const episodeStateSchema = new Schema({
         type: Number,
         required: true,
     },
-    userId: {
+    user: {
         type: String,
         required: true,
     },
