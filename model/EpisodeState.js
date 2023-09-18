@@ -17,18 +17,12 @@ const episodeStateSchema = new Schema({
     state: {
         isLiked: {
             type: Boolean,
-            required: true,
-            default: false,
         },
         isWatched: {
             type: Boolean,
-            required: true,
-            default: false,
         },
         isForLater: {
             type: Boolean,
-            required: true,
-            default: false,
         },
     },
     // users: {

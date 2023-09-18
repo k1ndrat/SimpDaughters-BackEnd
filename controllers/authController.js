@@ -32,12 +32,12 @@ const handleLogin = async (req, res) => {
         const accessToken = jwt.sign(
             { username: foundUser.username },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "30s" }
+            { expiresIn: "15m" }
         );
         const refreshToken = jwt.sign(
             { username: foundUser.username },
             process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: "1d" }
+            { expiresIn: "1w" }
         );
 
         const otherUsers = usersDB.users.filter(
@@ -104,10 +104,10 @@ const handleRefreshToken = async (req, res) => {
             const accessToken = jwt.sign(
                 { username: decoded.username },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: "30s" }
+                { expiresIn: "15m" }
             );
 
-            res.json({ accessToken });
+            res.json({ accessToken, user: foundUser.username });
         }
     );
 };
